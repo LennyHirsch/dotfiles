@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+TEMP=/tmp/current_wall
+
+files=(~/.config/hypr/wallpapers/*)
+
+hypr=~/.config/hypr
+scripts=$hypr/scripts
+
+cooldown=0.1
+
+index=$(cat $TEMP)
+index=$((index+1))
+if [ $index -ge ${#files[@]} ]; then
+  index=0
+fi
+echo $index > $TEMP
+$scripts/change-wallpaper "${files[$index]}"
+exit 0
+sleep $cooldown

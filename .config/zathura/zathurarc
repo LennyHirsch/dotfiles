@@ -1,0 +1,5 @@
+set recolor true
+set recolor-lightcolor 'rgba(36, 39, 58, 1)'
+set recolor-darkcolor '#f4dbd6'
+set highlight-color 'rgba(198, 160, 246, 0.5)'
+set highlight-active-color 'rgba(237, 135, 150, 0.5)'

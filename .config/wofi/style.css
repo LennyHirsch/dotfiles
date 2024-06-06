@@ -1,0 +1,38 @@
+* {
+  font-size: 20px;
+}
+#outer-box {
+  border: 2px solid #c6a0f6;
+  border-radius: 20px;
+  padding: 20px;
+  background: #24273a;
+  opacity: 0.9;
+}
+
+window {
+  background: transparent;
+  color: #ed8796;
+}
+
+#input {
+  background: transparent;
+  border: 0px;
+  outline: none;
+  box-shadow: none;
+  color: #ed8796;
+}
+
+#entry:selected {
+  background: shade(#c6a0f6, 0.3);
+  border-radius: 20px;
+  /* border: 2px solid shade(#c6a0f6, 0.5); */
+  padding-left: 10px;
+  outline: none;
+  color: #ee99a0;
+}
+
+#entry {
+  background: transparent;
+  border: none;
+  padding: 5px;
+}

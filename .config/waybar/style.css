@@ -1,0 +1,50 @@
+@import "macchiato.css";
+
+* {
+  color: @text;
+  border: none;
+  font-family: GeistMono NF;
+  font-size: 18px;
+}
+
+window#waybar {
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+.modules-right {
+  background: linear-gradient(45deg, shade(@mauve, 0.5) 0%, lighter(@base) 100%);
+  opacity: 0.8;
+  border-radius: 20px 0 0 20px;
+  /* border: 2px solid shade(@mauve, 0.5); */
+  border-right: 0px;
+  padding: 5px;
+}
+
+#idle_inhibitor, #pulseaudio, #network, #cpu, #memory, #clock, #tray {
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
+  transition: 0.5s all;
+}
+
+#custom-spacer {
+  color: shade(@base, 0.8);
+}
+
+#workspaces, .modules-right {
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+#workspaces button {
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+  margin-left: 6px;
+  background: shade(@base, 0.9);
+  color: @text;
+}
+
+#workspaces button.visible {
+  color: @rosewater;
+  background: linear-gradient(45deg, shade(@mauve, 0.5) 0%, lighter(@base) 100%);
+}

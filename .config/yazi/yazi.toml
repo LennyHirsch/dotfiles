@@ -1,0 +1,38 @@
+[opener]
+edit = [
+  { run = 'nvim "$@"', block = true },
+]
+play = [
+  { run = 'vlc "$@"', orphan = true, for = 'unix'},
+]
+image = [
+  { run = 'nomacs "$@"', orphan = true, for = 'unix'},
+]
+pdf = [
+  { run = 'zathura "$@" &', orphan = true, for = 'unix'},
+]
+open = [
+  { run = '"$@"', desc = "Open" },
+]
+
+[open]
+rules = [
+  { mime = 'text/*', use = 'edit' },
+  { mime = 'image/*', use = 'image' },
+  { mime = 'video/*', use = 'play' },
+  { mime = 'application/pdf', use = 'pdf' },
+  { mime = 'application/javascript', use = 'edit'},
+  { mime = 'application/json', use = 'edit'},
+  { mime = 'application/*', use = 'open' },
+]
+
+[plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+  { mime = "application/*zip",            run = "ouch" },
+  { mime = "application/x-tar",           run = "ouch" },
+  { mime = "application/x-bzip2",         run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar",           run = "ouch" },
+  { mime = "application/x-xz",            run = "ouch" },
+]
