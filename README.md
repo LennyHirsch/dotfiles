@@ -11,7 +11,7 @@ These instructions aren't exhaustive by far; I haven't got the time to document 
 ### Eww:
 
 1. Install [Eww Widgets](https://elkowar.github.io/eww/)
-2. Once installed, place the `./.config/eww` in your `.config` directory (`~/.config` by default).
+2. Once installed, place the `./.config/eww` folder in your `.config` directory (`~/.config` by default).
 3. Run `eww daemon` and `eww open roundbar`
 
 Make sure you have the GeistMono Nerd font installed, or replace `font-family` with your preferred font in `./.config/eww/widgets/roundbar/roundbar.scss` on line 6.
@@ -23,7 +23,8 @@ Make sure you have the GeistMono Nerd font and Fantasque Nerd font installed, or
 ### Neofetch:
 
 Should work out of the box pretty much. Line 17 is hacky because I'm a hack. Delete that and uncomment line 16 if you don't happen to have the exact same CPU.
+To run with the oni mask ascii, run `neofetch --ascii ~/.config/neofetch/oni.txt`.
 
 ### Neovim:
 
-NVChad with Catppuccin-Mocha theme. Theme is included with NVChad, but I've overridden to give more control over specifics like window transparency.
+NVChad with Catppuccin-Mocha theme, and some extra bells and whistles. Theme is included with NVChad, but I've overridden to give more control over specifics like window transparency.
