@@ -1,0 +1,12 @@
+theme = "Hydrogen"
+show = [
+"Kernel",
+"Distribution",
+"Uptime",
+"Packages",
+"DesktopEnvironment",
+"Shell",
+"Terminal",
+"Processor",
+"Memory"
+]

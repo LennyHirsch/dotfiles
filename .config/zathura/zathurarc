@@ -1,4 +1,4 @@
-set recolor true
+set recolor false
 set recolor-lightcolor 'rgba(36, 39, 58, 1)'
 set recolor-darkcolor '#f4dbd6'
 set highlight-color 'rgba(198, 160, 246, 0.5)'
