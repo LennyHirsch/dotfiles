@@ -1,0 +1,20 @@
+.settings-row {
+  background: $base;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.power-button {
+  background: $base;
+  color: $grey;
+  font-size: 20px;
+  border-radius: 5px;
+  transition: all 0.25s;
+  padding-bottom: 5px;
+  padding-right: 4px;
+}
+
+.power-button:hover {
+  color: $text
+}
+

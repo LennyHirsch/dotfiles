@@ -1,0 +1,35 @@
+
+(defwidget home []
+  (box :orientation "v" :space-evenly false
+    (home-row1)
+    (home-row2)
+    (home-row3)
+  )
+)
+
+(defwidget home-row1 []
+  (box :class "home-row row1" :orientation "h" :halign "center"
+    (datetime)
+  )
+)
+
+(defwidget home-row2 []
+  (box :class "home-row row2" :orientation "h" :halign "center"
+    (calendar :show-details false :show-day-names false)
+  )
+)
+
+(defwidget home-row3 []
+  (box :class "home-row row3" :orientation "h" :halign "center"
+  )
+)
+
+(defwidget datetime []
+  (box :class "datetime" :orientation "v" :space-evenly false
+    (clock)
+    (date)
+  )
+)
+
+(defwidget clock [] (box :class "clock" TIME))
+(defwidget date [] (box :class "date" DATE))

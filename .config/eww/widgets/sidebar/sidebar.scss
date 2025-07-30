@@ -1,0 +1,134 @@
+@import "./../../themes/bushido.scss";
+$font-size: 12px;
+
+* {
+  all: unset;
+  font-family: GeistMono NF;
+  font-weight: Bold;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  background: $base;
+  border-radius: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+.clock_date {
+  padding-top: 5px;
+  padding-right: 2px;
+}
+
+.checkbutton {
+  margin-right: 0px;
+  padding-left: 5px;
+  font-size: 15px;
+  color: $accent;
+  transition: all 0.25s;
+}
+
+.checkbutton check {
+  color: transparent;
+}
+
+.checkbutton:checked {
+  color: $glow;
+  text-shadow: 0 0 5px $accent;
+}
+
+.checkbutton check label:hover {
+  color: $accent;
+}
+
+.modules {
+  border-radius: 0px 10px 10px 0px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  color: $text;
+  font-size: $font-size;
+  background: $base;
+}
+
+.modules .spacer {
+  color: red;
+}
+
+.metric scale trough highlight {
+  background: $accent;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+
+.metric scale trough highlight:hover {
+  background: $alt;
+  box-shadow: 0px 0px 7px $alttext;
+}
+
+.metric scale trough {
+  background: lighten($black, 0%);
+  border-radius: 50px;
+  min-height: 70px;
+  min-width: 8px;
+}
+
+.metric scale {
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.close-button {
+  color: $accent;
+  // padding-right: 2px;
+  transition: all 0.25s;
+}
+
+.close-button:hover {
+  color: $glow;
+  text-shadow: 0px 0px 5px $accent;
+}
+
+.workspaces {
+  color: $text;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: $base;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.workspaces button {
+  transition: all 0.25s;
+  font-size: $font-size * 1.5;
+  color: $text;
+}
+
+.workspaces button:hover {
+  text-shadow: 0px 0px 7px #ff7777;
+  color: $alt;
+}
+
+.workspaces .active {
+  color: $text;
+}
+
+@keyframes pulse {
+  0% {
+    color: $text;
+    text-shadow: 0px 0px 0px $altglow;
+  }
+  85% {
+    color: $text;
+    text-shadow: 0px 0px 0px $altglow;
+  }
+  90% {
+    color: $glow;
+    text-shadow: 0px 0px 10px $altglow;
+  }
+  100% {
+    color: $text;
+    text-shadow: 0px 0px 0px $altglow;
+  }
+}

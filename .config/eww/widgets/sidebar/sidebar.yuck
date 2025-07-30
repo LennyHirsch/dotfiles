@@ -1,0 +1,216 @@
+(defpoll HOURS :interval "5s" `date +'%H'`)
+(defpoll MINS :interval "5s" `date +'%M'`)
+(defpoll DAY :interval "5s" `date +'%d/%m'`)
+(defvar bar_reveal false)
+(defvar settings_open false)
+(defvar clock_open false)
+
+(defwidget sidebar []
+  (centerbox
+    :orientation "v"
+    :class "sidebar"
+    :height 1030
+    (workspaces)
+    (filler)
+    (modules)
+  )
+)
+
+(defwidget workspaces []
+  (box :class "workspaces" :orientation "v" :valign "start"
+    (button
+      :class {WORKSPACES[0]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 1" {ACTIVEWORKSPACE==1 ? "" : ""}
+    )
+    (button
+      :class {WORKSPACES[1]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 2" {ACTIVEWORKSPACE==2 ? "" : ""}
+    )
+    (button
+      :class {WORKSPACES[2]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 3" {ACTIVEWORKSPACE==3 ? "" : ""}
+    )
+    (button 
+      :class {WORKSPACES[3]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 4" {ACTIVEWORKSPACE==4 ? "" : ""}
+    )
+    (button 
+      :class {WORKSPACES[4]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 5" {ACTIVEWORKSPACE==5 ? "" : ""}
+    )
+    (button 
+      :class {WORKSPACES[5]==1 ? "active" : ""}
+      :onclick "hyprctl dispatch workspace 6" {ACTIVEWORKSPACE==6 ? "" : ""}
+
+    )
+  )
+)
+
+(defwidget filler []
+  (label :text "")
+)
+
+(defwidget settings_gear []
+  (eventbox
+    :onhover "eww update settings_open=true"
+    :onhoverlost "eww update settings_open=false"
+    (box
+      (label :text "O")
+      (revealer
+        :reveal settings_open
+        :transition "slideleft"
+        :duration "250ms"
+        (label :text "I'm the settings menu woo woo woo woo woo")
+        ;;(box :class "settings-row row2" :orientation "h" :halign "center"
+        ;;(button :class "power-button" :onclick "shutdown now" "")
+        ;;(button :class "power-button" :onclick "reboot" "")
+        ;;(button :class "power-button sleep-button" :onclick "systemctl suspend" "")
+        ;;)
+      )
+    )
+  )
+)
+
+(defwidget middle []
+  (eventbox :onhover "eww update music_reveal=true"
+            :onhoverlost "eww update music_reveal=false"
+    (box :class "music-controls"
+         :orientation "h"
+         :space-evenly "false"
+      (revealer :reveal music_reveal
+                :transition "slideright"
+                :duration "250ms"
+        (box :class "music-buttons"
+          (button :class "music-button" :onclick "playerctl previous" "󰙣")
+          (button :class "music-button play-button"
+                  :onclick {(PLAYING == "Playing" ? "playerctl -p spotify pause" : (PLAYING == "Paused" ? "playerctl -p spotify play" : ""))}
+            (label :text {(PLAYING == "Playing" ? "󰏥" : (PLAYING == "Paused" ? "󰐌" : "󰙦"))}))
+          (button :class "music-button" :onclick "playerctl next" "󰙡")
+        )
+      )
+      (label :class {(PLAYING == "Playing" || PLAYING == "Paused" ? "spotify" : "spotify-off")} :text " ")
+      (button :class "song"
+              :onclick {(PLAYING == "Playing" ? "playerctl -p spotify pause" : (PLAYING == "Paused" ? "playerctl -p spotify play" : ""))}
+      (label :text SONG))
+    )
+  )
+)
+
+(defwidget modules []
+  (box :orientation "v" :valign "end" :class "modules" :space-evenly false :spacing 20
+    (metric
+      :label ""
+      :value {replace(VOLUME, '\%', '')}
+      :onchange "amixer sset Master {}%"
+    )
+    (spacer)
+    (cpu)
+    (ram)
+    (spacer)
+    (vertclock)
+    (gear)
+  )
+)
+
+(defwidget metric [label value onchange]
+  (box
+    :orientation "v"
+    :class "metric"
+    :space-evenly false
+    (box :class "label" label)
+    (scale
+      :round-digits 0
+      :orientation "v"
+      :flipped "true"
+      :min 0
+      :max 101
+      :active {onchange != ""}
+      :value value
+      :onchange onchange
+      )
+    (box :class "label" value)
+    )
+)
+
+(defwidget spacer [] (box :class "spacer" :orientation "v" "-"))
+(defwidget vertclock []
+  (eventbox
+    :onhover "eww update clock_open=true"
+    :onhoverlost "eww update clock_open=false"
+    (box
+      :class "clock"
+      :orientation "v"
+      :space-evenly false
+      (label
+        :text HOURS
+      )
+      (label
+        :text MINS
+      )
+      (revealer
+        :reveal clock_open
+        :transition "slideup"
+        :duration "250ms"
+        (box
+          :orientation "v"
+          :space-evenly false
+          (label :text DAY :angle "270" :class "clock_date")
+        )
+      )
+    )
+  )
+)
+(defwidget cpu []
+  (box
+    :class "label"
+    :orientation "v"
+    (label
+      :text ' '
+      :angle "270"
+    )
+    (label
+      :text {round(EWW_CPU.avg, 0)+'%'}
+      :angle "270"
+    )
+  )
+)
+(defwidget ram []
+  (box
+    :class "label"
+    :orientation "v"
+    (label
+      :text ' '
+      :angle "270"
+    )
+    (label
+      :text {round(EWW_RAM.used_mem_perc, 0)+'%'}
+      :angle "270"
+    )
+  )
+)
+(defwidget gear []
+  (box
+    :orientation "v"
+    :space-evenly false
+    (revealer
+      :reveal settings_open
+      :transition "slideup"
+      :duration "250ms"
+      (power_inline)
+    )
+    (checkbox
+      :class "checkbutton"
+      :orientation "v"
+      :onchecked "eww update settings_open=true"
+      :onunchecked "eww update settings_open=false" ""
+    )
+  )
+)
+
+(defwidget power_inline []
+  (box :class "settings-row" :orientation "v" :valign "center"
+    (button :class "power-button" :onclick "systemctl suspend" "")
+    (button :class "power-button" :onclick "reboot" "")
+    (button :class "power-button" :onclick "shutdown now" "")
+    )
+)

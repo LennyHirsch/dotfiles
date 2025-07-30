@@ -5,7 +5,7 @@
 (defwidget spotify []
   (box :class "spotify-widget" :orientation "v" :space-evenly false
     (box :class "spotify-meta" :orientation "h" :space-evenly false :halign "center"
-      (box :class "spotify-art" :style "background-image: url('${COVER}')")
+      ; (box :class "spotify-art" :style "background-image: url('${COVER}')")
       (box :class "spotify-info" :orientation "v" :space-evenly false :valign "center" :halign "start"
         (label :class "spotify-title" :text SONG)
         (label :class "spotify-artist" :text ARTIST)

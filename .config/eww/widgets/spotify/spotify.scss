@@ -7,13 +7,14 @@ $font-size: 16px;
 
 .spotify-widget {
   background: lighten($grey, 0%);
+  background: rgba(100, 100, 100, 50%);
   margin: 5px 20px;
   // border: 2px solid $alt;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .spotify-meta {
-  padding: 20px 20px
+  padding: 20px 20px;
 }
 
 .spotify-art {
@@ -38,7 +39,7 @@ $font-size: 16px;
 }
 
 .spotify-controls {
-  font-size: $font-size*2.5;
+  font-size: $font-size * 2.5;
 }
 
 .spotify-button {
@@ -52,7 +53,7 @@ $font-size: 16px;
 }
 
 .spotify-play {
-  padding:0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 
 .spotify-prog-bar {

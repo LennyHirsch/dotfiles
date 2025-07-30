@@ -1,0 +1,8 @@
+(defwidget settings_inline []
+  (box :class "settings-row" :orientation "h" :halign "center"
+    (button :class "power-button" :onclick "shutdown now" "")
+    (button :class "power-button" :onclick "reboot" "")
+    (button :class "power-button sleep-button" :onclick "systemctl suspend" "")
+    )
+  )
+

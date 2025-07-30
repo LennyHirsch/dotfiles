@@ -1,8 +1,54 @@
-(include "./widgets/roundbar/roundbar.yuck")
+; (include "./widgets/roundbar/roundbar.yuck")
+(include "./widgets/simplebar/simplebar.yuck")
+(include "./widgets/sidebar/sidebar.yuck")
+(include "./widgets/settings_inline/settings_inline.yuck")
 (include "./widgets/settings/settings.yuck")
 (include "./widgets/spotify/spotify.yuck")
+(include "./widgets/homecluster/home.yuck")
 
-(defwindow roundbar
+(defwindow homecluster
+  :monitor 0
+  :geometry (geometry :width "50%"
+                      :height "30px"
+                      :anchor "center")
+  :stacking "bottom"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore true
+(home)
+)
+
+(defwindow sidebar
+  :monitor 1
+  :geometry (geometry
+  :x "0%"
+  :y "0px"
+  :width "10px"
+  :height "100%"
+  :anchor "center left"
+  )
+  :windowtype "dock"
+  :stacking "fg"
+  :exclusive true
+  (sidebar)
+)
+
+(defwindow settings_inline
+  :monitor 1
+  :geometry (geometry
+  :x "4px"
+  :y "0px"
+  :width "10px"
+  :height "5%"
+  :anchor "left bottom"
+  )
+  :windowtype "dock"
+  :stacking "fg"
+  :exclusive false
+  (settings_inline)
+)
+
+(defwindow simplebar
   :monitor 0
   :geometry (geometry
   :x "0%"
@@ -13,7 +59,7 @@
   :windowtype "dock"
   :stacking "bottom"
   :exclusive true
-  (roundbar)
+  (simplebar)
 )
 
 (defwindow settings
