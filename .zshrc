@@ -51,8 +51,13 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias ls='ls --color'
+alias ls='eza --icons'
 alias neopic="neofetch --kitty ~/Pictures/Wallpapers/wallhalla-67-1920x1080.jpg"
+alias bwt="~/Documents/Rust/bitwarden-tui-async/target/release/bitwarden-tui-async"
+alias wgu="sudo wg-quick up gb-lon-wg-001"
+alias wgd="sudo wg-quick down gb-lon-wg-001"
+alias openwebui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
+
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
@@ -66,17 +71,20 @@ function yy() {
 export PATH=$PATH:/home/o/.spicetify
 export PATH=$PATH:/home/o/.cargo/bin
 export PATH=$PATH:/home/o/Scripts
+export PATH=$PATH:/home/o/Documents/Rust/argoncrypt/target/release
+
+# Set up pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 # Themes
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/themes/bushido-zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Set up zoxide, fzf, starship
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
+
+. "$HOME/.local/bin/env"
